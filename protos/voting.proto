@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message VoteRequest {
+    string candidate_id = 1;
+}
+
+message VoteResponse {
+    string message = 1;
+}
+
+message CandidateRequest {
+    string message = 1;
+}
+
+message CandidateListResponse {
+    repeated string candidates = 1;
+}
+service Voting {
+    rpc CastVote (VoteRequest) returns (VoteResponse);
+    rpc GetCandidates (CandidateRequest) returns (CandidateListResponse);
+}
+// python -m grpc_tools.protoc -I./protos --python_out=. --pyi_out=. --grpc_python_out=. ./protos/voting.proto
