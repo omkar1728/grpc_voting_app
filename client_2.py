@@ -7,7 +7,7 @@ def main():
     channel = grpc.insecure_channel('localhost:50051')
     # Create a stub (client)
     stub = voting_pb2_grpc.VotingStub(channel)
-    voter_id = 1
+    voter_id = "2"
     while(True):
         print("1. Get candidate list")
         print("2. Register candidate")
@@ -16,44 +16,51 @@ def main():
         print("5. Get winner")
         print("6. Exit")
 
-        choice = int(input("Enter your choice: "))
-        if choice == 1:
+        choice = input("Enter your choice: ")
+        print()
+        if choice == "1":
             # Call the GetCandidates RPC
             get_candidates_request = voting_pb2.GetCandidateRequest(message="Get candidates")
             candidate_list_response = stub.GetCandidates(get_candidates_request)
-            print("Candidate List Response:", candidate_list_response.candidates)
+            candidates = candidate_list_response.candidates
+            print("List of candidates is:")
+            for i in candidates:
+                print(i)
 
-        if choice == 2:
+        elif choice == "2":
             # Call the RegisterCandidate RPC
             name = input("Enter candidate name: ")
             register_candidate_request = voting_pb2.RegisterCandidateRequest(candidate_name= name)
             register_candidate_response = stub.RegisterCandidate(register_candidate_request)
-            print("Register Candidate Response:", register_candidate_response.message)
+            print( register_candidate_response.message)
 
-        if choice == 3:
+        elif choice == "3":
             # Call the RegisterVoter RPC
             #voter_id = input("Enter your voter id: ")
             register_voter_request = voting_pb2.RegisterVoterRequest(voter_id=voter_id)
             register_voter_response = stub.RegisterVoter(register_voter_request)
-            print("Register Voter Response:", register_voter_response.message)
+            print( register_voter_response.message)
         
-        if choice == 4:
+        elif choice == "4":
             #voter_id = input("Enter your voter id: ")
             name = input("Enter candidate name: ")
-
             vote_candidate_request = voting_pb2.VoteRequest(candidate_name= name, voter_id= voter_id)
             vote_candidate_response = stub.VoteCandidate( vote_candidate_request )
-            print( vote_candidate_response.message)
+            print(vote_candidate_response.message)
 
-        if choice == 5:
-            winner_candidate_request = voting_pb2.WinnerRequest(message= "123")
+        elif choice == "5":
+            winner_candidate_request = voting_pb2.WinnerRequest(message="123")
             winner_candidate_response = stub.GetWinner( winner_candidate_request )
-            print("Winner is ", winner_candidate_response.message)
+            print(winner_candidate_response.message)
 
-        if choice == 6:
+        elif choice == "6":
             break
+        else:
+            print("Choose a valid choice")
 
-
+        print()
+        print()
+        print()
 
 
 

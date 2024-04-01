@@ -7,21 +7,24 @@ def main():
     channel = grpc.insecure_channel('localhost:50051')
     # Create a stub (client)
     stub = voting_pb2_grpc.VotingStub(channel)
-    voter_id = 1
     while(True):
+        voter = "1"
         print("1. Get candidate list")
         print("2. Register candidate")
         print("3. Register voter")
         print("4. Vote candidate")
         print("5. Get winner")
         print("6. Exit")
-
+        print(voter)
+        print("hello")
         choice = int(input("Enter your choice: "))
         if choice == 1:
             # Call the GetCandidates RPC
+            print("hellow")
             get_candidates_request = voting_pb2.GetCandidateRequest(message="Get candidates")
             candidate_list_response = stub.GetCandidates(get_candidates_request)
-            print("Candidate List Response:", candidate_list_response.candidates)
+            print("Candidate List Response:", candidate_list_response.candidates,  voter)
+            print(voter)
 
         if choice == 2:
             # Call the RegisterCandidate RPC
@@ -33,15 +36,15 @@ def main():
         if choice == 3:
             # Call the RegisterVoter RPC
             #voter_id = input("Enter your voter id: ")
-            register_voter_request = voting_pb2.RegisterVoterRequest(voter_id=voter_id)
+            register_voter_request = voting_pb2.RegisterVoterRequest(voter_id=voter)
             register_voter_response = stub.RegisterVoter(register_voter_request)
             print("Register Voter Response:", register_voter_response.message)
         
         if choice == 4:
             #voter_id = input("Enter your voter id: ")
             name = input("Enter candidate name: ")
-
-            vote_candidate_request = voting_pb2.VoteRequest(candidate_name= name, voter_id= voter_id)
+            print(voter_id)
+            vote_candidate_request = voting_pb2.VoteRequest(candidate_name= name, voter_id= voter)
             vote_candidate_response = stub.VoteCandidate( vote_candidate_request )
             print( vote_candidate_response.message)
 

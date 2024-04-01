@@ -142,55 +142,55 @@ create_tables()
 # close_connection()
 
 
-#Main loop for user interaction
-while True:
-    print("\nMenu:")
-    print("1. Get candidate list")
-    print("2. Register new candidate")
-    print("3. Register new voter")
-    print("4. Vote")
-    print("5. Get candidate with max votes")
-    print("6. Get candidate votes")
-    print("7. Exit")
+# #Main loop for user interaction
+# while True:
+#     print("\nMenu:")
+#     print("1. Get candidate list")
+#     print("2. Register new candidate")
+#     print("3. Register new voter")
+#     print("4. Vote")
+#     print("5. Get candidate with max votes")
+#     print("6. Get candidate votes")
+#     print("7. Exit")
 
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        candidate_list = get_all_candidates()
-        if candidate_list:
-            print("Candidate List:")
-            for candidate in candidate_list:
-                print(candidate)
-        else:
-            print("No candidates found.")
-    elif choice == "2":
-        candidate_name = input("Enter candidate name: ")
-        register_new_candidate(candidate_name)
-    elif choice == "3":
-        voter_id = input("Enter voter ID: ")
-        register_new_voter(voter_id)
-    elif choice == "4":
-        voter_id = input("Enter voter ID: ")
-        candidate_name = input("Enter candidate name: ")
-        vote(voter_id, candidate_name)
-    elif choice == "5":
-        candidate_name = get_candidate_with_max_votes()
-        if candidate_name:
-            print("Candidate with Max Votes:", candidate_name)
-        else:
-            print("No votes recorded yet.")
-    elif choice == "6":
-        candidate_votes = get_candidate_votes()
-        if candidate_votes:
-            print("Candidate Votes:")
-            for candidate, vote_count in candidate_votes:
-                print(f"{candidate}: {vote_count}")
-        else:
-            print("No votes recorded yet.")
-    elif choice == "7":
-        print("Exiting...")
-        break
-    else:
-        print("Invalid choice. Please enter a valid option.")
+#     choice = input("Enter your choice: ")
+#     if choice == "1":
+#         candidate_list = get_all_candidates()
+#         if candidate_list:
+#             print("Candidate List:")
+#             for candidate in candidate_list:
+#                 print(candidate)
+#         else:
+#             print("No candidates found.")
+#     elif choice == "2":
+#         candidate_name = input("Enter candidate name: ")
+#         register_new_candidate(candidate_name)
+#     elif choice == "3":
+#         voter_id = input("Enter voter ID: ")
+#         register_new_voter(voter_id)
+#     elif choice == "4":
+#         voter_id = input("Enter voter ID: ")
+#         candidate_name = input("Enter candidate name: ")
+#         vote(voter_id, candidate_name)
+#     elif choice == "5":
+#         candidate_name = get_candidate_with_max_votes()
+#         if candidate_name:
+#             print("Candidate with Max Votes:", candidate_name)
+#         else:
+#             print("No votes recorded yet.")
+#     elif choice == "6":
+#         candidate_votes = get_candidate_votes()
+#         if candidate_votes:
+#             print("Candidate Votes:")
+#             for candidate, vote_count in candidate_votes:
+#                 print(f"{candidate}: {vote_count}")
+#         else:
+#             print("No votes recorded yet.")
+#     elif choice == "7":
+#         print("Exiting...")
+#         break
+#     else:
+#         print("Invalid choice. Please enter a valid option.")
 
-#Close the connection
-close_connection()
+# #Close the connection
+# close_connection()

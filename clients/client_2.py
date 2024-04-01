@@ -7,7 +7,7 @@ def main():
     channel = grpc.insecure_channel('localhost:50051')
     # Create a stub (client)
     stub = voting_pb2_grpc.VotingStub(channel)
-    voter_id = 1
+    voter_id = 2
     while(True):
         print("1. Get candidate list")
         print("2. Register candidate")
